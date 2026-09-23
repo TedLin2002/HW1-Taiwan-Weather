@@ -101,6 +101,17 @@ def read_saved_forecasts(city: str) -> pd.DataFrame:
             conn, params=(city,))
 
 
+def configured_cwa_key() -> str:
+    key = os.getenv("CWA_API_KEY", "").strip()
+    if key:
+        return key
+    try:
+        return str(st.secrets.get("CWA_API_KEY", "")).strip()
+    except Exception:
+        # Streamlit secrets are optional for local/offline use.
+        return ""
+
+
 def demo_forecast(city: str) -> pd.DataFrame:
     """Clearly labelled fallback data for trying the UI without an API key."""
     now = datetime.now().astimezone().replace(minute=0, second=0, microsecond=0)
@@ -125,8 +136,9 @@ init_db()
 with st.sidebar:
     st.title("🌦️ 天氣設定")
     city = st.selectbox("選擇縣市", list(CITIES))
-    api_key = st.text_input("CWA API 授權碼", value=os.getenv("CWA_API_KEY", ""), type="password",
-                            help="可從中央氣象署開放資料平台取得。金鑰僅用於本次查詢。")
+    entered_api_key = st.text_input("CWA API 授權碼（可留空使用伺服器設定）", value="", type="password",
+                                    help="可在本機 .env 或部署平台 Secrets 設定；輸入欄不會預載伺服器金鑰。")
+    api_key = entered_api_key.strip() or configured_cwa_key()
     refresh = st.button("更新天氣資料", type="primary", use_container_width=True)
     st.caption("資料來源：中央氣象署開放資料平台。無金鑰時使用示範資料。")
 

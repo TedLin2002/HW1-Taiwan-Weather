@@ -40,6 +40,8 @@ streamlit run app.py
 
 macOS / Linux：`export CWA_API_KEY="你的授權碼"` 後執行 `streamlit run app.py`。也可以在 Streamlit 側邊欄輸入授權碼；金鑰不會寫入資料庫。
 
+部署到 Streamlit Community Cloud 時，請在 app 的 **Settings → Secrets** 設定 `CWA_API_KEY = "你的授權碼"`。應用程式從伺服器端讀取 Secrets，不會將該值預填到瀏覽器欄位，也不要把金鑰提交到 GitHub。
+
 未設定金鑰時仍可執行，應用程式會使用標示為「示範資料」的範例預報。`.env`、SQLite 資料庫與虛擬環境均不應上傳 GitHub。開發階段與驗收關卡見 [workflow.md](workflow.md)。
 
 ## 離線回放檢查

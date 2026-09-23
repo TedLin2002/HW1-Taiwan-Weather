@@ -39,7 +39,7 @@ flowchart TD
 
 - [ ] 有效授權碼的即時 CWA API 查詢（需本機設定金鑰後確認）。
 - [x] 無金鑰或 API 失敗時顯示離線示範資料，並清楚告知使用者。
-- [x] 不在 SQLite 中保存 API 金鑰；VCR cassette 使用合成授權碼並過濾授權欄位。
+- [x] 不在畫面、日誌、SQLite 或 VCR cassette 中保存真實 API 金鑰；部署 Secrets 由伺服器端讀取。
 
 ## Stage 3：互動介面、地圖與趨勢圖
 
