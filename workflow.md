@@ -70,12 +70,12 @@ flowchart TD
 
 - [x] 新環境依 README 可安裝並啟動 Streamlit；pytest/VCR 開發依賴另列。
 - [x] 離線示範路徑可展示，CWA 路徑及資料來源交代清楚。
-- [ ] GitHub 尚未登入，尚不能檢視追蹤清單或推送；`.gitignore` 已排除 `.env`、資料庫和虛擬環境。
-- [ ] 如需線上展示，確認部署平台的 Secrets 已設定後再發布。
+- [x] 公開 Repository `TedLin2002/HW1-Taiwan-Weather` 已建立並推送至 `main`；已確認 `.env`、資料庫和虛擬環境未納入追蹤。
+- [ ] Streamlit Community Cloud 部署待帳號擁有者完成登入／條款確認；如要即時 CWA 資料，部署 Secrets 尚需由帳號擁有者設定。
 
 ## 本次實作對照
 
 - Stage 1–4：已建立在 `app.py` 與 `cwa_client.py`，包含縣市預報、地圖、溫度圖表、離線示範、SQLite 查詢紀錄與預報明細。
 - Stage 2 金鑰：支援 `.env`、環境變數與側邊欄輸入；範例檔為 `.env.example`。即時 API 驗證待使用者本機加入有效金鑰。
 - Stage 3/4：VCR 回放已固定合成 CWA 回應並通過離線檢查。
-- Stage 5：`README.md` 提供執行指引。GitHub CLI 現有登入憑證失效；公開 Repository `HW1-Taiwan-Weather` 待重新登入後建立並推送，線上部署其後再處理。
+- Stage 5：`README.md` 提供執行指引。公開 Repository 已發布：<https://github.com/TedLin2002/HW1-Taiwan-Weather>。Community Cloud 登入、使用條款確認和部署 Secrets 仍待帳號擁有者操作。
