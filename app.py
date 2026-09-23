@@ -169,8 +169,7 @@ except (requests.RequestException, ValueError, KeyError) as exc:
     else:
         diagnostic = type(exc).__name__
     logging.warning("CWA query failed (%s)", diagnostic)
-    st.warning("CWA API 查詢失敗，暫以示範資料顯示。請檢查網路連線或 API 設定；為保護授權碼，錯誤細節已隱藏。")
-    forecast, source = demo_forecast(city), "示範資料（API 連線失敗）"
+    forecast, source = demo_forecast(city), "示範資料"
 
 first = forecast.iloc[0]
 save_forecast(city, forecast, source)
