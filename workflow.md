@@ -37,7 +37,7 @@ flowchart TD
 
 **Gate 2：資料可用且來源清楚**
 
-- [ ] 有效授權碼的即時 CWA API 查詢（需本機設定金鑰後確認）。
+- [x] 有效授權碼已由本機 `.env` 驗證：CWA 回傳 3 個臺北市預報時段，網頁標示為即時資料。
 - [x] 無金鑰或 API 失敗時顯示離線示範資料，並清楚告知使用者。
 - [x] 不在日誌、SQLite 或 VCR cassette 中保存真實 API 金鑰；部署 Secrets 由伺服器端讀取，API 金鑰以 Authorization 標頭傳送且錯誤細節已隱藏。
 
@@ -76,6 +76,6 @@ flowchart TD
 ## 本次實作對照
 
 - Stage 1–4：已建立在 `app.py` 與 `cwa_client.py`，包含縣市預報、地圖、溫度圖表、離線示範、SQLite 查詢紀錄與預報明細。
-- Stage 2 金鑰：支援 `.env`、環境變數與側邊欄輸入；範例檔為 `.env.example`。即時 API 驗證待使用者本機加入有效金鑰。
+- Stage 2 金鑰：支援 `.env`、環境變數、Streamlit Secrets 與側邊欄輸入；範例檔為 `.env.example`。本機 CWA 即時查詢已驗證。
 - Stage 3/4：VCR 回放已固定合成 CWA 回應並通過離線檢查。
 - Stage 5：`README.md` 提供執行指引。公開 Repository 已發布：<https://github.com/TedLin2002/HW1-Taiwan-Weather>。Community Cloud 登入、使用條款確認和部署 Secrets 仍待帳號擁有者操作。
