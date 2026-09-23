@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import logging
 import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -156,7 +157,18 @@ def get_forecast(selected_city: str, key: str) -> tuple[pd.DataFrame, str]:
 
 try:
     forecast, source = get_forecast(city, api_key)
-except (requests.RequestException, ValueError, KeyError):
+except (requests.RequestException, ValueError, KeyError) as exc:
+    # Keep diagnostics useful in Streamlit Cloud without ever logging the key,
+    # response body, or exception text (which may contain sensitive details).
+    if isinstance(exc, requests.HTTPError) and exc.response is not None:
+        diagnostic = f"HTTP {exc.response.status_code}"
+    elif isinstance(exc, requests.Timeout):
+        diagnostic = "request timeout"
+    elif isinstance(exc, requests.ConnectionError):
+        diagnostic = "connection error"
+    else:
+        diagnostic = type(exc).__name__
+    logging.warning("CWA query failed (%s)", diagnostic)
     st.warning("CWA API 查詢失敗，暫以示範資料顯示。請檢查網路連線或 API 設定；為保護授權碼，錯誤細節已隱藏。")
     forecast, source = demo_forecast(city), "示範資料（API 連線失敗）"
 
