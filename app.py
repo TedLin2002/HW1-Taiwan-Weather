@@ -156,8 +156,8 @@ def get_forecast(selected_city: str, key: str) -> tuple[pd.DataFrame, str]:
 
 try:
     forecast, source = get_forecast(city, api_key)
-except (requests.RequestException, ValueError, KeyError) as exc:
-    st.warning(f"CWA API 查詢失敗，暫以示範資料顯示。原因：{exc}")
+except (requests.RequestException, ValueError, KeyError):
+    st.warning("CWA API 查詢失敗，暫以示範資料顯示。請檢查網路連線或 API 設定；為保護授權碼，錯誤細節已隱藏。")
     forecast, source = demo_forecast(city), "示範資料（API 連線失敗）"
 
 first = forecast.iloc[0]

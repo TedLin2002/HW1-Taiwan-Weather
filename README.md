@@ -8,7 +8,7 @@
 - 以互動地圖呈現縣市位置，並用圖表比較未來各時段溫度。
 - 將查詢紀錄與每個預報時段的天氣、溫度、降雨機率及來源存入本機 SQLite 資料庫 `weather_history.db`。
 - 未設定 API 金鑰或 API 暫時無法連線時，以內建示範資料展示介面；畫面會清楚標記資料來源。
-- 使用 VCR cassette 回放固定的合成 CWA 回應，離線驗證資料解析；cassette 不含真實授權碼。
+- 使用 VCR cassette 回放固定的合成 CWA 回應，離線驗證資料解析；cassette 不含真實授權碼。API 金鑰使用 HTTP Authorization 標頭，不放在 URL。
 
 ## 執行方式
 

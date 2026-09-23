@@ -6,6 +6,8 @@ interactions:
       - '*/*'
       Accept-Encoding:
       - gzip, deflate
+      Authorization:
+      - REDACTED_TEST_TOKEN
       Connection:
       - keep-alive
       User-Agent:

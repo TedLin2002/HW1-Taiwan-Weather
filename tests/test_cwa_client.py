@@ -10,7 +10,7 @@ CASSETTE = Path(__file__).parent / "cassettes" / "cwa_taipei.yaml"
 def test_cwa_forecast_replays_recorded_response():
     cassette = vcr.VCR(
         record_mode="none",
-        filter_query_parameters=[("Authorization", "REDACTED_TEST_TOKEN")],
+        filter_headers=[("Authorization", "REDACTED_TEST_TOKEN")],
         match_on=("method", "scheme", "host", "path"),
     )
     with cassette.use_cassette(str(CASSETTE)):

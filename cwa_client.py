@@ -7,7 +7,8 @@ API_URL = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001"
 
 
 def cwa_forecast(city: str, api_key: str) -> pd.DataFrame:
-    response = requests.get(API_URL, params={"Authorization": api_key}, timeout=15)
+    # Keep credentials out of request URLs, browser history, and URL-bearing exceptions.
+    response = requests.get(API_URL, headers={"Authorization": api_key}, timeout=15)
     response.raise_for_status()
     payload = response.json()
     records = payload.get("records", {}).get("location", [])
